@@ -1,0 +1,19 @@
+# Compiled class files
+*.class
+
+# Output directory
+out/
+
+# NetBeans files (REMOVE THESE FROM REPO)
+build/
+nbproject/
+
+# VS Code settings (optional)
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
