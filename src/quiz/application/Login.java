@@ -35,7 +35,7 @@ public class Login extends JFrame implements ActionListener {
         tfname.setFont(new Font("Times New Roman", Font.BOLD, 20));
         add(tfname);
 
-        rules = new JButton("Rules");
+        rules = new JButton("Next");
         rules.setBounds(735, 270, 120, 25);
         rules.setBackground(new Color(30, 144, 254));
         rules.setForeground(Color.WHITE);
@@ -54,7 +54,7 @@ public class Login extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent ae) {
+    public void actionPerformed(ActionEvent ae) { //EventListener
         if (ae.getSource() == rules) {
             String name = tfname.getText();
             setVisible(false);
@@ -63,6 +63,10 @@ public class Login extends JFrame implements ActionListener {
             setVisible(false);
         }
     }
+
+    // Get user name from text field
+    // Hide current window Open Rules screen
+    // Pass name to next class
 
     public static void main(String[] args) {
         new Login();
