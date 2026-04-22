@@ -4,20 +4,20 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Quiz extends JFrame implements ActionListener {           //Inheritance → extends JFrame, Abstraction → ActionListener hides logic
+public class Quiz extends JFrame implements ActionListener {           
 
-    String questions[][] = new String[10][5];      //2D arrays to store questions, answers, and user responses.
-    String answers[][] = new String[10][2];        //Encapsulation → Data stored in arrays  
+    String questions[][] = new String[10][5];      
+    String answers[][] = new String[10][2];        
     String useranswers[][] = new String[10][1];
     JLabel qno, question;
     JRadioButton opt1, opt2, opt3, opt4;
     ButtonGroup groupoptions;
     JButton next, submit, lifeline;
 
-    public static int timer = 15;         //countdown (15 sec)
-    public static int ans_given = 0;      //question index
-    public static int count = 0;          //final marks
-    public static int score = 0;          //checks if user answered correctly or not
+    public static int timer = 15;         
+    public static int ans_given = 0;      
+    public static int count = 0;          
+    public static int score = 0;          
 
     String name;
 
@@ -102,16 +102,16 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
         questions[9][3] = "Polymorphism";
         questions[9][4] = "Abstraction";
 
-        answers[0][1] = "To organize code using objects and classes";   // option 2
-        answers[1][1] = "A blueprint for creating objects";             // option 3
-        answers[2][1] = "An instance of a class";                       // option 1
-        answers[3][1] = "One class to use properties of another class"; // option 3
-        answers[4][1] = "Wrapping data and methods together in a class";// option 4
-        answers[5][1] = "Same method working in different ways";        // option 1
-        answers[6][1] = "extends";                                     // option 3
-        answers[7][1] = "Same method name with different parameters";   // option 2
-        answers[8][1] = "Changing method behavior in child class";      // option 4
-        answers[9][1] = "Abstraction";                                 // option 4
+        answers[0][1] = "To organize code using objects and classes";   
+        answers[1][1] = "A blueprint for creating objects";            
+        answers[2][1] = "An instance of a class";                       
+        answers[3][1] = "One class to use properties of another class"; 
+        answers[4][1] = "Wrapping data and methods together in a class";
+        answers[5][1] = "Same method working in different ways";        
+        answers[6][1] = "extends";                                     
+        answers[7][1] = "Same method name with different parameters";   
+        answers[8][1] = "Changing method behavior in child class";      
+        answers[9][1] = "Abstraction";                                 
 
         opt1 = new JRadioButton();
         opt1.setBounds(170, 520, 700, 30);
@@ -173,7 +173,7 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent ae) {          // Polymorphism → actionPerformed()
+    public void actionPerformed(ActionEvent ae) {         
         if (ae.getSource() == next) {
             repaint();
             opt1.setEnabled(true);
@@ -182,7 +182,7 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
             opt4.setEnabled(true);
 
             ans_given = 1;
-            if (groupoptions.getSelection() == null) {     //Save user answer
+            if (groupoptions.getSelection() == null) {     
                 useranswers[count][0] = "";
             } else {
                 useranswers[count][0] = groupoptions.getSelection().getActionCommand();
@@ -193,7 +193,7 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
                 submit.setEnabled(true);
             }
 
-            count++;                                           //Move to next question
+            count++;                                       
             start(count);
         } else if (ae.getSource() == lifeline) {
             if (count == 2 || count == 4 || count == 6 || count == 8 || count == 9) {
@@ -204,9 +204,9 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
                 opt4.setEnabled(false);
             }
             lifeline.setEnabled(false);
-        } else if (ae.getSource() == submit) {            //Save last answer
+        } else if (ae.getSource() == submit) {          
             ans_given = 1;
-            if (groupoptions.getSelection() == null) {    //Compare answers
+            if (groupoptions.getSelection() == null) {    
                 useranswers[count][0] = "";
             } else {
                 useranswers[count][0] = groupoptions.getSelection().getActionCommand();
@@ -220,14 +220,14 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
                 }
             }
             setVisible(false);
-            new Score(name, score);                        //Open score screen
+            new Score(name, score);                    
         }
     }
 
     public void paint(Graphics g) {
         super.paint(g);
 
-        String time = "Time left - " + timer + " seconds"; // Show timer:15
+        String time = "Time left - " + timer + " seconds"; 
         g.setColor(Color.RED);
         g.setFont(new Font("Tahoma", Font.BOLD, 25));
 
@@ -237,7 +237,7 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
             g.drawString("Times up!!", 1100, 500);
         }
 
-        timer--; // Decrease timer by 1 every second
+        timer--; 
 
         try {
             Thread.sleep(1000);
@@ -249,7 +249,7 @@ public class Quiz extends JFrame implements ActionListener {           //Inherit
         if (ans_given == 1) {
             ans_given = 0;
             timer = 15;
-        } else if (timer < 0) {             //Time ends
+        } else if (timer < 0) {          
             timer = 15;
             opt1.setEnabled(true);
             opt2.setEnabled(true);
